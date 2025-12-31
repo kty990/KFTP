@@ -1,0 +1,118 @@
+:root {
+    --menu: #525252;
+    --interaction: #9a9a9a;
+    --border: #313131;
+    --text: #fff;
+}
+
+html {
+    user-select: none;
+}
+
+#header {
+    position: fixed;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    background-color: var(--menu);
+    color: var(--text);
+    width: 100vw;
+    height: 15vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.directory {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.directory>* {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 3vh;
+}
+
+.btn {
+    background-color: var(--interaction);
+    width: fit-content;
+    border-color: var(--border);
+    border-width: 3px;
+    border-style: solid;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.btn:hover {
+    filter: brightness(0.5);
+    cursor: pointer;
+}
+
+#transfer {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    height: fit-content;
+    font-size: 3vh;
+}
+
+#files {
+    position: fixed;
+    left: 0;
+    top: 15vh;
+    width: 50vw;
+    height: 75vh;
+    background-color: var(--sub-menu);
+    border-right-style: solid;
+    border-color: var(--border);
+    border-width: 2px;
+}
+
+#files>*,
+#transfered>* {
+    font-size: 1.2vh;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: var(--interaction);
+    padding: 5px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#transfered {
+    position: fixed;
+    left: 50vw;
+    top: 15vh;
+    width: 50vw;
+    height: 75vh;
+    background-color: var(--sub-menu);
+}
+
+#console {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 10vh;
+    border-top-style: solid;
+    border-color: var(--border);
+    border-width: 2px;
+    background-color: var(--menu);
+    display: flex;
+    flex-direction: column;
+}

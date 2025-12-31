@@ -1,0 +1,34 @@
+{
+  "name": "keenan-ftp",
+  "version": "1.0.0",
+  "description": "A program meant to bulk transfer images with the same directory setup and file names & types",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "electron . --trace-warnings",
+    "build": "electron-builder"
+  },
+  "build": {
+    "appId": "me.keenan_ftp.app",
+    "productName": "File Transfer",
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "license": "../LICENSE.md",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico"
+    }
+  },
+  "author": "Ty Kutcher",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^39.2.7",
+    "electron-builder": "^26.0.12"
+  },
+  "dependencies": {
+    "source-map-support": "^0.5.21"
+  }
+}
