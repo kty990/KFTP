@@ -113,7 +113,7 @@ The application includes several developer-friendly features:
 
 ## Future Enhancements
 
-- [ ] Move vs. Copy toggle option
+- [x] Move vs. Copy toggle option
 - [ ] Progress indicators for large transfers
 - [ ] File preview functionality
 - [ ] Auto-update functionality
