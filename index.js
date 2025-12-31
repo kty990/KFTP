@@ -133,7 +133,7 @@ ipcMain.on("getFilesInDirectory", async (ev, ...args) => {
     }
 })
 
-async function moveFileWithMetadata(source, destination) {
+async function moveFileWithMetadata(source, destination, copy = true) {
     console.log(`moveFileWithMetadata:\n\tSource: ${source}\n\tDestination: ${destination}`)
     try {
         // Get original file stats
@@ -153,7 +153,9 @@ async function moveFileWithMetadata(source, destination) {
         await fs.promises.chmod(destination, stats.mode);
 
         // Delete original file
-        // await fs.promises.unlink(source);
+        if (!copy) {
+            await fs.promises.unlink(source);
+        }
 
         return [true, null];
     } catch (error) {
@@ -189,7 +191,26 @@ ipcMain.on("transferFile", async (ev, data) => {
         // Use path.join for cross-platform compatibility
         let destination = path.join(to, filename);
 
-        let result = await moveFileWithMetadata(from, destination);
+        let result = await moveFileWithMetadata(from, destination, false);
+        console.log(`Transfer File result:\n\t${result[0]}\n\t${result[1]}`)
+        ev.sender.send("transferFile", result);
+    } catch (e) {
+        ev.sender.send("transferFile", [false, `${e}`]);
+    }
+})
+
+ipcMain.on("transferFileCopy", async (ev, data) => {
+    let from = data[0];
+    let to = data[1];
+    console.log(`transferFile event:\n\tFrom: ${from}\n\tTo: ${to}`)
+    try {
+        // Use path.basename instead of string splitting
+        let filename = path.basename(from);
+
+        // Use path.join for cross-platform compatibility
+        let destination = path.join(to, filename);
+
+        let result = await moveFileWithMetadata(from, destination, true);
         console.log(`Transfer File result:\n\t${result[0]}\n\t${result[1]}`)
         ev.sender.send("transferFile", result);
     } catch (e) {

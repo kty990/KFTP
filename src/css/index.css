@@ -109,10 +109,29 @@ html {
     padding: 0;
     width: 100vw;
     height: 10vh;
+    overflow-y: auto;
     border-top-style: solid;
     border-color: var(--border);
     border-width: 2px;
     background-color: var(--menu);
     display: flex;
     flex-direction: column;
+}
+
+#active {
+    background: linear-gradient(90deg, var(--interaction), #007d00);
+}
+
+#inactive {
+    background: linear-gradient(90deg, #7d0000, var(--interaction));
+}
+
+#console>* {
+    margin: 0;
+    padding: 0;
+}
+
+.toggle {
+    width: 10vw;
+    margin-top: 2vh;
 }

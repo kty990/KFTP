@@ -4,6 +4,7 @@ const toDir = document.getElementById('toDir');
 const toLabel = toDir.parentElement.querySelector("#selected")
 
 const transferBtn = document.getElementById("transfer");
+const copy_moveBtn = document.getElementsByClassName("toggle")[0];
 
 const fileList = document.getElementById('files');
 const transferList = document.getElementById("transfered");
@@ -26,21 +27,38 @@ transferBtn.addEventListener("click", async () => {
     if (transfering) return;
     transfering = true;
     let children = Array.from(fileList.children);
+    const informEveryTransfer = children.length < 10;
     for (let i = 0; i < children.length; i++) {
         let c = children[i];
-        console.log(`From renderer, trying to transfer file: ${fromLabel.textContent}\\${c.textContent} to ${toLabel.textContent}`)
-        let success = await window.api.invoke("transferFile", [`${fromLabel.textContent}\\${c.textContent}`, toLabel.textContent]);
-        console.log(`Success variable`, success);
+        // console.log(`From renderer, trying to transfer file: ${fromLabel.textContent}\\${c.textContent} to ${toLabel.textContent}`)
+        let success = await window.api.invoke(`transferFile${(copy_moveBtn.textContent == "Copy") ? 'Copy' : ''}`, [`${fromLabel.textContent}\\${c.textContent}`, toLabel.textContent]);
+        // console.log(`Success variable`, success);
         if (!success[0]) {
-            toConsole("#7d0000", success[1])
+            toConsole("#7d0000", `❌ ${success[1]}`)
             continue;
+        } else {
+            if (informEveryTransfer) {
+                toConsole("#ffffff", `✅ Successfully transfered ${fromLabel.textContent}\\${c.textContent}} to ${toLabel.textContent}\\${c.textContent}`);
+            }
         }
         c.remove();
         let tmp = document.createElement("p");
         tmp.textContent = c.textContent;
         transferList.appendChild(tmp);
     }
+    toConsole("#ffffff", `✅ Successfully transfered [${children.length}] images to "${toLabel.textContent}"`)
     transfering = false;
+})
+
+copy_moveBtn.addEventListener("click", () => {
+    let copy = copy_moveBtn.textContent == "Copy";
+    if (copy) {
+        copy_moveBtn.textContent = "Move";
+        copy_moveBtn.id = "inactive";
+    } else {
+        copy_moveBtn.textContent = "Copy";
+        copy_moveBtn.id = "active";
+    }
 })
 
 fromDir.addEventListener('click', async (e) => {
@@ -75,17 +93,17 @@ const oldError = console.error;
 
 console.log = function (...args) {
     oldLog.apply(console, args);
-    toConsole("#7d7d7d", args.join(" "));
+    toConsole("#ffffff", args.join(" "));
 }
 
 console.warn = function (...args) {
     oldWarn.apply(console, args);
-    toConsole("#ffbb0e", args.join(" "));
+    toConsole("#ffbb0e", `⚠️ ${args.join(" ")}`);
 }
 
 console.error = function (...args) {
     oldError.apply(console, args);
-    toConsole("#7d0000", args.join(" "));
+    toConsole("#7d0000", `❌ ${args.join(" ")}`);
 }
 
 window.addEventListener("keydown", (ev) => {
