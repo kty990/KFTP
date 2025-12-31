@@ -147,7 +147,7 @@ async function moveFileWithMetadata(source, destination) {
         await fs.promises.copyFile(source, destination);
 
         // Preserve timestamps on destination
-        await fs.promises.utimes(destination, stats.atime, stats.mtime);
+        await fs.promises.utimes(destination, stats.atime, stats.mtime); // could be mtime twice
 
         // Preserve permissions
         await fs.promises.chmod(destination, stats.mode);
