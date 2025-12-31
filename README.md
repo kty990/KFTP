@@ -2,6 +2,9 @@
 
 An Electron-based desktop application for managing and transferring image files between directories while preserving file metadata.
 
+> [!NOTE]
+> Any license updates will only apply to version that pertains to the new license and future software versions with the same license.
+
 ## Overview
 
 This application provides a graphical interface for browsing directories, viewing image files, and transferring them between locations. The app maintains file metadata (timestamps, permissions) during transfers and includes basic developer tools for debugging.
@@ -63,8 +66,6 @@ When transferring files, the application:
 2. Copies the file to the destination
 3. Restores original timestamps and permissions
 4. Returns success/failure status with error messages if applicable
-
-**Note**: The original file is currently preserved (unlink is commented out). Uncomment the `fs.promises.unlink(source)` line in `moveFileWithMetadata()` to delete the source file after transfer.
 
 ## Project Structure
 
