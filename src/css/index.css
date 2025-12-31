@@ -23,6 +23,11 @@ html {
     grid-template-columns: repeat(3, 1fr);
 }
 
+#header>* {
+    margin: 0;
+    padding: 0;
+}
+
 .directory {
     display: flex;
     flex-direction: column;
@@ -72,6 +77,7 @@ html {
     top: 15vh;
     width: 50vw;
     height: 75vh;
+    overflow-y: auto;
     background-color: var(--sub-menu);
     border-right-style: solid;
     border-color: var(--border);
@@ -92,11 +98,36 @@ html {
     margin-right: auto;
 }
 
+#progressBar {
+    position: fixed;
+    left: 45vw;
+    top: 85vh;
+    width: 10vw;
+    height: 5vh;
+    background-color: var(--interaction);
+    border-color: var(--border);
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 2px;
+    overflow: hidden;
+}
+
+#progressBar>div {
+    position: relative;
+    width: 10vw;
+    height: 5vh;
+    border-style: none;
+    border-radius: 0px;
+    background-color: #007d00;
+    display: block;
+}
+
 #transfered {
     position: fixed;
     left: 50vw;
     top: 15vh;
     width: 50vw;
+    overflow-y: auto;
     height: 75vh;
     background-color: var(--sub-menu);
 }
@@ -115,7 +146,7 @@ html {
     border-width: 2px;
     background-color: var(--menu);
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
 }
 
 #active {
