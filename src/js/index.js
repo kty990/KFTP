@@ -69,7 +69,24 @@ toDir.addEventListener('click', async (e) => {
     }
 });
 
+const oldLog = console.log;
+const oldWarn = console.warn;
+const oldError = console.error;
 
+console.log = function (...args) {
+    oldLog.apply(console, args);
+    toConsole("#7d7d7d", args.join(" "));
+}
+
+console.warn = function (...args) {
+    oldWarn.apply(console, args);
+    toConsole("#ffbb0e", args.join(" "));
+}
+
+console.error = function (...args) {
+    oldError.apply(console, args);
+    toConsole("#7d0000", args.join(" "));
+}
 
 window.addEventListener("keydown", (ev) => {
     if (ev.ctrlKey) {

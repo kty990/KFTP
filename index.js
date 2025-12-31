@@ -153,7 +153,7 @@ async function moveFileWithMetadata(source, destination) {
         await fs.promises.chmod(destination, stats.mode);
 
         // Delete original file
-        await fs.promises.unlink(source);
+        // await fs.promises.unlink(source);
 
         return [true, null];
     } catch (error) {
@@ -162,7 +162,7 @@ async function moveFileWithMetadata(source, destination) {
 }
 
 
-ipcMain.on("transferFile", async (ev, data) => {
+/*ipcMain.on("transferFile", async (ev, data) => {
     // c.textContent, toLabel.textContent
     let from = data[0];
     let to = data[1];
@@ -171,6 +171,25 @@ ipcMain.on("transferFile", async (ev, data) => {
         let ext = from.split("\\");
         ext = ext[ext.length - 1];
         let result = await moveFileWithMetadata(from, to + `/${ext}`);
+        console.log(`Transfer File result:\n\t${result[0]}\n\t${result[1]}`)
+        ev.sender.send("transferFile", result);
+    } catch (e) {
+        ev.sender.send("transferFile", [false, `${e}`]);
+    }
+})*/
+
+ipcMain.on("transferFile", async (ev, data) => {
+    let from = data[0];
+    let to = data[1];
+    console.log(`transferFile event:\n\tFrom: ${from}\n\tTo: ${to}`)
+    try {
+        // Use path.basename instead of string splitting
+        let filename = path.basename(from);
+
+        // Use path.join for cross-platform compatibility
+        let destination = path.join(to, filename);
+
+        let result = await moveFileWithMetadata(from, destination);
         console.log(`Transfer File result:\n\t${result[0]}\n\t${result[1]}`)
         ev.sender.send("transferFile", result);
     } catch (e) {

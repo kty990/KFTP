@@ -6,7 +6,9 @@
   "scripts": {
     "start": "electron .",
     "test": "electron . --trace-warnings",
-    "build": "electron-builder"
+    "build": "electron-builder -mw",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac"
   },
   "build": {
     "appId": "me.keenan_ftp.app",
@@ -20,6 +22,15 @@
       "allowToChangeInstallationDirectory": true,
       "installerIcon": "build/icon.ico",
       "uninstallerIcon": "build/icon.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "build/icon.icns",
+      "category": "public.app-category.utilities"
+    },
+    "dmg": {
+      "title": "${productName} ${version}",
+      "icon": "build/icon.icns"
     }
   },
   "author": "Ty Kutcher",
