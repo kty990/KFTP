@@ -15,6 +15,10 @@ This application provides a graphical interface for browsing directories, viewin
 - **Developer Tools**: Toggle developer tools for debugging (Ctrl+Shift+I or similar)
 - **Cross-Platform**: Built with Electron for Windows, macOS, and Linux support
 
+- **Key binds**:
+    └── ctrl+t        Opens dev tools
+    └── ctrl+r        Hot reload
+
 ## Technical Details
 
 ### Window Configuration
@@ -22,7 +26,7 @@ This application provides a graphical interface for browsing directories, viewin
 - Default size: 800x600 pixels
 - Minimum size: 800x600 pixels
 - Custom application icon support
-- Frameless menu for clean interface
+- Optional frameless menu for clean interface
 
 ### Supported Image Formats
 
