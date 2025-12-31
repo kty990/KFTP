@@ -3,7 +3,7 @@
 An Electron-based desktop application for managing and transferring image files between directories while preserving file metadata.
 
 > [!NOTE]
-> Any license updates will only apply to version that pertains to the new license and future software versions with the same license.
+> Any license updates will only apply to that version that pertains to the new license and future software versions with the same license.
 
 ## Overview
 
