@@ -1,6 +1,6 @@
 {
   "name": "keenan-ftp",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A program meant to bulk transfer images with the same directory setup and file names & types",
   "main": "index.js",
   "scripts": {
