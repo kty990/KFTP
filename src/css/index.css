@@ -115,7 +115,7 @@ html {
     border-width: 2px;
     background-color: var(--menu);
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
 }
 
 #active {

@@ -1,4 +1,4 @@
-const fromDir = document.getElementById('fromDir');
+﻿const fromDir = document.getElementById('fromDir');
 const fromLabel = fromDir.parentElement.querySelector("#selected")
 const toDir = document.getElementById('toDir');
 const toLabel = toDir.parentElement.querySelector("#selected")
@@ -18,7 +18,7 @@ function decodeURL(str) {
 function toConsole(color, value) {
     let tmp = document.createElement('p');
     tmp.style.color = color;
-    tmp.textContent = value;
+    tmp.innerHTML = value;
     _console.appendChild(tmp);
 }
 
@@ -38,15 +38,17 @@ transferBtn.addEventListener("click", async () => {
             continue;
         } else {
             if (informEveryTransfer) {
-                toConsole("#ffffff", `✅ Successfully transfered ${fromLabel.textContent}\\${c.textContent}} to ${toLabel.textContent}\\${c.textContent}`);
+                toConsole("#ffffff", `✅ Successfully transfered <strong>"${fromLabel.textContent}\\${c.textContent}"</strong> to <strong>"${toLabel.textContent}\\${c.textContent}"</strong>`);
             }
         }
-        c.remove();
+        if (copy_moveBtn.textContent != "Copy") {
+            c.remove();
+        }
         let tmp = document.createElement("p");
         tmp.textContent = c.textContent;
         transferList.appendChild(tmp);
     }
-    toConsole("#ffffff", `✅ Successfully transfered [${children.length}] images to "${toLabel.textContent}"`)
+    toConsole("#ffffff", `✅ Successfully transfered <strong>[${children.length}]</strong> images to <strong>"${toLabel.textContent}"</strong>\nMove/Copy status: ${copy_moveBtn.textContent == "Copy" ? 'copied the files' : 'moved the files'}`)
     transfering = false;
 })
 

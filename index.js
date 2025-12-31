@@ -212,9 +212,9 @@ ipcMain.on("transferFileCopy", async (ev, data) => {
 
         let result = await moveFileWithMetadata(from, destination, true);
         console.log(`Transfer File result:\n\t${result[0]}\n\t${result[1]}`)
-        ev.sender.send("transferFile", result);
+        ev.sender.send("transferFileCopy", result);
     } catch (e) {
-        ev.sender.send("transferFile", [false, `${e}`]);
+        ev.sender.send("transferFileCopy", [false, `${e}`]);
     }
 })
 
