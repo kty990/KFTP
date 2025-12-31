@@ -15,9 +15,12 @@ This application provides a graphical interface for browsing directories, viewin
 - **Developer Tools**: Toggle developer tools for debugging (Ctrl+Shift+I or similar)
 - **Cross-Platform**: Built with Electron for Windows, macOS, and Linux support
 
-- **Key binds**:
-    └── ctrl+t        Opens dev tools
-    └── ctrl+r        Hot reload
+### Keybinds
+
+| Key | Purpose |
+|-------|---------|
+| `ctrl+t` | Opens devTools |
+| `ctrl+r` | Hot reload the application (renderer) |
 
 ## Technical Details
 
