@@ -114,7 +114,7 @@ The application includes several developer-friendly features:
 
 ## Future Enhancements
 
-*Any and all enhancement requests can be added as a new [Issue](https://github.com/kty990/KFTP/issues)
+*Any and all enhancement requests can be added as a new [Issue](https://github.com/kty990/KFTP/issues)*
 
 - [x] Move vs. Copy toggle option
 - [x] Progress indicators for large transfers
