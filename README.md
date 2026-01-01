@@ -9,6 +9,16 @@ An Electron-based desktop application for managing and transferring image files 
 
 This application provides a graphical interface for browsing directories, viewing image files, and transferring them between locations. The app maintains file metadata (timestamps, permissions) during transfers and includes basic developer tools for debugging.
 
+| Title | Link |
+|-------|---------|
+| Features | [Link](https://github.com/kty990/KFTP/tree/main?tab=readme-ov-file#features) |
+| Technical Details | [Link](https://github.com/kty990/KFTP/tree/main?tab=readme-ov-file#technical-details) |
+| IPC Events | [Link](https://github.com/kty990/KFTP/tree/main?tab=readme-ov-file#ipc-events) |
+| FTP | [Link](https://github.com/kty990/KFTP/tree/main?tab=readme-ov-file#file-transfer-process) |
+| Development | [Link](https://github.com/kty990/KFTP/tree/main?tab=readme-ov-file#development) |
+| License | [Link](https://github.com/kty990/KFTP/blob/main/LICENSE.md) |
+
+
 ## Features
 
 - **Directory Selection**: Browse and select directories through a native dialog interface
