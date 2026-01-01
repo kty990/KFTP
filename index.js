@@ -163,7 +163,6 @@ async function moveFileWithMetadata(source, destination, copy = true) {
     }
 }
 
-
 /*ipcMain.on("transferFile", async (ev, data) => {
     // c.textContent, toLabel.textContent
     let from = data[0];
@@ -202,16 +201,16 @@ ipcMain.on("transferFile", async (ev, data) => {
 ipcMain.on("transferFileCopy", async (ev, data) => {
     let from = data[0];
     let to = data[1];
-    console.log(`transferFile event:\n\tFrom: ${from}\n\tTo: ${to}`)
+    console.log(`transferFileCopy event:\n\tFrom: ${from}\n\tTo: ${to}`)
     try {
         // Use path.basename instead of string splitting
         let filename = path.basename(from);
 
-        // Use path.join for cross-platform compatibility
+        // Use path.join for cross-platform compatibility 
         let destination = path.join(to, filename);
 
         let result = await moveFileWithMetadata(from, destination, true);
-        console.log(`Transfer File result:\n\t${result[0]}\n\t${result[1]}`)
+        console.log(`Transfer File Copy result:\n\t${result[0]}\n\t${result[1]}`)
         ev.sender.send("transferFileCopy", result);
     } catch (e) {
         ev.sender.send("transferFileCopy", [false, `${e}`]);

@@ -46,17 +46,17 @@ This application provides a graphical interface for browsing directories, viewin
 
 The application uses Electron's IPC (Inter-Process Communication) for communication between the main and renderer processes:
 
-| Event | Direction | Purpose |
+| Event | Preload Usage | Purpose |
 |-------|-----------|---------|
-| `dev-refresh` | Renderer → Main | Reload the application window |
-| `close` | Renderer → Main | Close the application |
-| `minimize` | Renderer → Main | Minimize the window |
-| `toggle-dev-tools` | Renderer → Main | Toggle developer tools |
-| `getDirectory` | Bidirectional | Open directory picker and return selected path |
-| `getFilesInDirectory` | Bidirectional | Scan directory for image files |
-| `transferFile` | Bidirectional | Transfer file with metadata preservation |
-| `edit-cache` | Renderer → Main | Store data in memory cache |
-| `get-cache` | Bidirectional | Retrieve data from memory cache |
+| `dev-refresh` | Send → Main | Reload the application window |
+| `close` | Send → Main | Close the application |
+| `minimize` | Send → Main | Minimize the window |
+| `toggle-dev-tools` | Send → Main | Toggle developer tools |
+| `getDirectory` | Invoke | Open directory picker and return selected path |
+| `getFilesInDirectory` | Invoke | Scan directory for image files |
+| `transferFile` | Invoke | Transfer file with metadata preservation |
+| `edit-cache` | Send → Main | Store data in memory cache |
+| `get-cache` | Invoke | Retrieve data from memory cache |
 
 ## File Transfer Process
 
@@ -114,10 +114,10 @@ The application includes several developer-friendly features:
 
 ## Future Enhancements
 
+*Any and all enhancement requests can be added as a new [Issue](https://github.com/kty990/KFTP/issues)
+
 - [x] Move vs. Copy toggle option
-- [ ] Progress indicators for large transfers
-- [ ] File preview functionality
-- [ ] Auto-update functionality
+- [x] Progress indicators for large transfers
 
 ## License
 
