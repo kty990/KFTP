@@ -3,6 +3,13 @@ const { exec } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 
+const fileTypes = ['png', 'jpg', 'jpeg', 'webp', 'svg', 'bmp']; // Feel free to add/remove as you please
+
+/**
+ *  ========================== TO KEEP THE INTEGRITY OF THE PROGRAM, DO NOT EDIT BELOW HERE ========================
+ *  ====================== (If you are making intentional changes, ignore this ) ===================================
+ */
+
 let devToolsOpened = false;
 
 class GUI {
@@ -123,7 +130,6 @@ async function getFilesRecursively(dirPath, extensions = []) {
 }
 
 ipcMain.on("getFilesInDirectory", async (ev, ...args) => {
-    let fileTypes = ['png', 'jpg', 'jpeg', 'webp', 'svg', 'bmp'];
     let directory = args[0];
     if (directory) {
         let result = await getFilesRecursively(directory, fileTypes);
