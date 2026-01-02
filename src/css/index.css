@@ -1,12 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
+
 :root {
-    --menu: #525252;
-    --interaction: #9a9a9a;
+    --menu: #232323;
+    --sub-menu: #525252;
+    --interaction: #646464;
     --border: #313131;
     --text: #fff;
 }
 
 html {
     user-select: none;
+    font-family: "Comfortaa", sans-serif;
 }
 
 #header {
@@ -44,7 +48,7 @@ html {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    font-size: 3vh;
+    font-size: 2vh;
 }
 
 .btn {
@@ -75,7 +79,7 @@ html {
     position: fixed;
     left: 0;
     top: 15vh;
-    width: 50vw;
+    width: calc(85vw/2);
     height: 75vh;
     overflow-y: auto;
     background-color: var(--sub-menu);
@@ -83,6 +87,77 @@ html {
     border-color: var(--border);
     border-width: 2px;
 }
+
+#settings {
+    position: fixed;
+    right: 0;
+    top: 15vh;
+    width: 15vw;
+    height: 75vh;
+    overflow-y: auto;
+    background-color: var(--menu);
+    border-left-style: solid;
+    border-color: var(--border);
+    border-width: 2px;
+}
+
+#fileTypes {
+    position: absolute;
+    left: 2px;
+    top: 0px;
+    background-color: var(--sub-menu);
+    width: 90%;
+    height: 80%;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+#fileTypes>div {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#fileTypes>div>p {
+    margin: 0;
+    padding: 5px;
+    text-align: center;
+    color: var(--text);
+    width: 100%;
+    background-color: var(--interaction);
+}
+
+#fileTypes>div>span {
+    position: absolute;
+    left: 5px;
+    color: var(--text);
+}
+
+#fileTypes>div>span:hover {
+    filter: brightness(0.5);
+    cursor: pointer;
+}
+
+#addType {
+    width: 90%;
+    position: absolute;
+    left: 0px;
+    top: 90%;
+    height: 2.5vh;
+    padding: 0;
+    margin: 0;
+    background-color: var(--interaction);
+    outline: unset;
+    border-radius: 5px;
+    color: var(--text);
+}
+
+#addType::placeholder {
+    color: var(--text);
+    filter: brightness(0.75);
+}
+
 
 #files>*,
 #transfered>* {
@@ -100,7 +175,7 @@ html {
 
 #progressBar {
     position: fixed;
-    left: 45vw;
+    left: calc((85vw/2) - 5vw);
     top: 85vh;
     width: 10vw;
     height: 5vh;
@@ -124,12 +199,13 @@ html {
 
 #transfered {
     position: fixed;
-    left: 50vw;
+    left: calc(85vw/2);
     top: 15vh;
-    width: 50vw;
+    width: calc(85vw/2);
     overflow-y: auto;
     height: 75vh;
     background-color: var(--sub-menu);
+    border-left-style: solid;
 }
 
 #console {

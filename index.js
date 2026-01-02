@@ -3,7 +3,8 @@ const { exec } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 
-const fileTypes = ['png', 'jpg', 'jpeg', 'webp', 'svg', 'bmp']; // Feel free to add/remove as you please
+const DEFAULT_FILETYPES = ['png', 'jpg', 'jpeg', 'webp', 'svg', 'bmp']; // Feel free to add/remove as you please
+var fileTypes = DEFAULT_FILETYPES;
 
 /**
  *  ========================== TO KEEP THE INTEGRITY OF THE PROGRAM, DO NOT EDIT BELOW HERE ========================
@@ -102,6 +103,10 @@ ipcMain.on("getDirectory", async (ev, ...args) => {
 
 })
 
+ipcMain.on("getExtensions", (ev) => {
+    ev.sender.send("getExtensions", JSON.stringify(fileTypes));
+})
+
 async function getFilesRecursively(dirPath, extensions = []) {
     const entries = fs.readdirSync(dirPath, {
         recursive: true,      // Enable recursive traversal
@@ -128,6 +133,11 @@ async function getFilesRecursively(dirPath, extensions = []) {
 
     return files;
 }
+
+ipcMain.on("setExtensions", (ev, ...args) => {
+    fileTypes = args[0];
+    ev.sender.send("setExtensions", fileTypes);
+})
 
 ipcMain.on("getFilesInDirectory", async (ev, ...args) => {
     let directory = args[0];

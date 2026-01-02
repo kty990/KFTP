@@ -9,7 +9,7 @@
 <body>
     <div id="header">
         <div class="directory">
-            <p class="btn" id="fromDir">Select From Directory</p>
+            <p class="btn" id="fromDir">Select Source Directory (FROM)</p>
             <p id="selected">-</p>
         </div>
         <div class="directory">
@@ -17,12 +17,17 @@
             <p class="btn toggle" id="active">Copy</p>
         </div>
         <div class="directory">
-            <p class="btn" id="toDir">Select To Directory</p>
+            <p class="btn" id="toDir">Select Destination Directory (TO)</p>
             <p id="selected">-</p>
         </div>
     </div>
     <div id="files"></div>
     <div id="transfered"></div>
+    <div id="settings">
+        <div id="fileTypes">
+        </div>
+        <input id="addType" placeholder="PNG">
+    </div>
     <div id="progressBar">
         <div style="right: 100%;">
         </div>

@@ -14,11 +14,75 @@ const copy_moveBtn = document.getElementsByClassName("toggle")[0];
 const fileList = document.getElementById('files');
 const transferList = document.getElementById("transfered");
 
+const settings = document.getElementById("settings");
+const fileTypes = settings.querySelector("#fileTypes");
+
 const _console = document.getElementById("console");
+const addTypes = document.getElementById("addType");
 
 function decodeURL(str) {
     return decodeURIComponent(str);
 }
+
+async function main() {
+    let default_exts = JSON.parse(await window.api.invoke("getExtensions"));
+    for (let ext of default_exts) {
+        let div = document.createElement('div');
+        let p = document.createElement("p");
+        p.textContent = ext.toUpperCase();
+        let span = document.createElement("span");
+        span.textContent = "X";
+        span.addEventListener("click", async () => {
+            div.remove();
+            await wait(100);
+            window.api.send("setExtensions", Array.from(fileTypes.children).map(v => {
+                return v.querySelector("p").textContent;
+            }))
+        })
+        div.appendChild(span);
+        div.appendChild(p);
+        fileTypes.appendChild(div);
+    }
+}
+main();
+
+let TYPES_FOCUSED = false;
+addTypes.addEventListener("focus", () => {
+    TYPES_FOCUSED = true;
+})
+
+addTypes.addEventListener("blur", () => {
+    TYPES_FOCUSED = false;
+})
+
+addTypes.addEventListener("keydown", (ev) => {
+    if (ev.key.toLowerCase() == "enter" && TYPES_FOCUSED) {
+        // Add type
+        if (addTypes.value.length > 0) {
+            let div = document.createElement('div');
+            let p = document.createElement("p");
+            p.textContent = addTypes.value.toUpperCase();
+            let span = document.createElement("span");
+            span.textContent = "X";
+            span.addEventListener("click", async () => {
+                div.remove();
+                await wait(100);
+                window.api.send("setExtensions", Array.from(fileTypes.children).map(v => {
+                    return v.querySelector("p").textContent;
+                }))
+            })
+            div.appendChild(span);
+            div.appendChild(p);
+            fileTypes.appendChild(div);
+
+            window.api.send("setExtensions", Array.from(fileTypes.children).map(v => {
+                return v.querySelector("p").textContent;
+            }))
+
+            addTypes.value = '';
+        }
+    }
+})
 
 function toConsole(color, value) {
     _console.innerHTML = `<p style="color:${color};">${value}</p>` + _console.innerHTML;
@@ -44,7 +108,7 @@ transferBtn.addEventListener("click", async () => {
     console.warn(`Starting transfer!`);
     for (let i = 0; i < children.length; i++) {
         let c = children[i];
-        // console.log(`From renderer, trying to transfer file: ${fromLabel.textContent}\\${c.textContent} to ${toLabel.textContent}`)
+        // console.log(`From renderer, trying to transfer file: ${fromLabel.textContent}\\${c.textContent} to ${toLabel.textContent}`
         let success = await window.api.invoke(`transferFile${(copy_moveBtn.textContent == "Copy") ? 'Copy' : ''}`, [`${fromLabel.textContent}\\${c.textContent}`, toLabel.textContent]);
         // console.log(`Success variable`, success);
         if (!success[0]) {
@@ -165,14 +229,12 @@ window.addEventListener("keydown", (ev) => {
     }
 })
 
-fileList.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    // Reverse the scroll direction to match the reversed layout
-    fileList.scrollTop -= e.deltaY;
-}, { passive: false });
-
-transferList.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    // Reverse the scroll direction to match the reversed layout
-    transferList.scrollTop -= e.deltaY;
-}, { passive: false });
+window.api.on("setExtensions", (...args) => {
+    let fileTypes = args[0];
+    console.warn(`Set new file extensions: ${fileTypes.join(", ")}`)
+    toLabel.textContent = '-';
+    fromLabel.textContent = '-';
+    fileList.innerHTML = '';
+    transferList.innerHTML = '';
+    console.warn(`To & From file lists and directories have been reset!`)
+})
