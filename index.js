@@ -119,13 +119,13 @@ async function getFilesRecursively(dirPath, extensions = []) {
 
     for (const entry of entries) {
         const relativePath = path.relative(dirPath, path.join(entry.path, entry.name));
-
+        extensions = extensions.map(v => v.toUpperCase())
         // If no extensions specified, include all files
         if (extensions.length === 0) {
             files.push(relativePath);
         } else {
             let tmp = entry.name.split('.');
-            if (extensions.includes(tmp[tmp.length - 1])) {
+            if (extensions.includes(tmp[tmp.length - 1].toUpperCase())) {
                 files.push(relativePath);
             }
         }
